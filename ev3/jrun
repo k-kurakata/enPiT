@@ -1,0 +1,11 @@
+#! /bin/sh
+. /etc/default/lejos
+export LD_LIBRARY_PATH=${LEJOS_HOME}/libjna/usr/lib/arm-linux-gnueabi/:${LEJOS_HOME}/libjna/usr/lib/jni/
+classpath=${LEJOS_HOME}/lib/ev3classes.jar:${LEJOS_HOME}/lib/dbusjava.jar:${LEJOS_HOME}/libjna/usr/share/java/jna.jar:/home/root/lejos/lib/apache-mime4j-0.6.jar:/home/root/lejos/lib/commons-codec-1.3.jar:/home/root/lejos/lib/commons-logging-1.1.1.jar:/home/root/lejos/lib/dbusjava.jar:/home/root/lejos/lib/ev3classes.jar:/home/root/lejos/lib/httpclient-4.0.jar:/home/root/lejos/lib/httpcore-4.0.1.jar:/home/root/lejos/lib/httpmime-4.0.jar:/home/root/lejos/lib/rsnp-robot-api-2.3.0_r49.jar:/home/root/lejos/lib/rsnp-robot-fjlib-2.3.0_r49.jar:.
+if [ "$1" = "-cp" ]
+then
+        classpath="$2":$classpath
+        echo classpath: $classpath
+        shift 2
+fi
+exec ${LEJOS_HOME}/ejre*/bin/java -classpath $classpath $*
