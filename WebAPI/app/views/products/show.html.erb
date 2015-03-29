@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="page-header"><%= @product.name %></h1>
+
+<h3>Price: <%= @product.price.to_i %></h3>
+
+<% if @user.purchased_products.purchased? @product %>
+  <p>You have already bought this.<p>
+<% elsif @user.point < @product.price %>
+  <p>You don't have enough point to buy.<p>
+<% else %>
+  <%= button_to 'Buy this!', purchase_path, class: 'btn btn-primary' %>
+  <br>
+<% end %>
+
+<%= button_to 'Back', products_path, class: 'btn btn-default', method: :get %>

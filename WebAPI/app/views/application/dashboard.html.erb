@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="page-header">Missions</h1>
+
+<% if @missions.empty? then %>
+  <p>No mission created.</p>
+<% else %>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Mission</th>
+          <th>Difficulty</th>
+          <th>Edit</th>
+          <th>Close</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @missions.each do |mission| %>
+          <tr>
+            <td><%= mission.body %></td>
+            <td><%= difficulty_text mission.difficulty %></td>
+            <td><%= link_to 'Edit', edit_mission_path(mission), class: 'btn btn-default' %></td>
+            <td><%= link_to 'Close', mission, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<%= button_to 'New Mission', new_mission_path, class: 'btn btn-primary', method: :get %><br>

@@ -1,0 +1,5 @@
+<h1 class="page-header"><%= @product.name %></h1>
+
+<p><%= image_tag "document_#{@product.id}.png", width: '100%' %></p>
+
+<%= button_to 'Back', products_path, class: 'btn btn-default', method: :get %>
